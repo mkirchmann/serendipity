@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import de.neuenberger.serendipity.ListSelection;
 import de.neuenberger.serendipity.MultiplierProcess;
-import de.neuenberger.serendipity.Probability;
+import de.neuenberger.serendipity.ProbabilityOutcome;
 import de.neuenberger.serendipity.ProbabilityProcess;
-import de.neuenberger.serendipity.SimpleProbability;
+import de.neuenberger.serendipity.SimpleProbabilityOutcome;
 import de.neuenberger.serendipity.em.Team.TeamProbabilityFactory;
 
 public class TestEM2016 {
@@ -102,7 +102,7 @@ public class TestEM2016 {
 	}
 
 	ProbabilityProcess createKoMatch(ProbabilityProcess pa, ProbabilityProcess pb) {
-		Probability[] probabilityArray = ProbabilityProcess.toProbabilities(pa,pb);
+		ProbabilityOutcome[] probabilityArray = ProbabilityProcess.toProbabilities(pa,pb);
 		return new ListSelection(1, probabilityArray);
 	}
 
@@ -114,9 +114,9 @@ public class TestEM2016 {
 	@Test
 	public void testFinalTeam() {
 		ProbabilityProcess finalMatch = createFinal(Team.getTeamProbabilityFactoryName());
-		List<Probability> probabilityOutput = finalMatch.getProbabilityOutput();
+		List<ProbabilityOutcome> probabilityOutput = finalMatch.getProbabilityOutput();
 		double sumAll = 0.0;
-		for (Probability probability : probabilityOutput) {
+		for (ProbabilityOutcome probability : probabilityOutput) {
 			System.out.println(probability);
 			sumAll+=probability.getProbability();
 		}
@@ -127,10 +127,10 @@ public class TestEM2016 {
 	@Test
 	public void testFinalSupplier() {
 		ProbabilityProcess finalMatch = createFinal(Team.getTeamProbabilityFactorySupplier());
-		List<Probability> probabilityOutput = finalMatch.getProbabilityOutput();
+		List<ProbabilityOutcome> probabilityOutput = finalMatch.getProbabilityOutput();
 		double sumAll = 0.0;
 		printLine();
-		for (Probability probability : probabilityOutput) {
+		for (ProbabilityOutcome probability : probabilityOutput) {
 			System.out.println(probability);
 			sumAll+=probability.getProbability();
 		}
@@ -143,33 +143,33 @@ public class TestEM2016 {
 		String titleF = "f";
 		String titleE = "e";
 		String titleA = "a";
-		Probability pa=new SimpleProbability(titleA);
+		ProbabilityOutcome pa=new SimpleProbabilityOutcome(titleA);
 		String titleB = "b";
-		Probability pb=new SimpleProbability(titleB);
-		Probability pc=new SimpleProbability("c");
-		Probability pd=new SimpleProbability("d");
-		Probability pe=new SimpleProbability(titleE);
-		Probability pf=new SimpleProbability(titleF);
+		ProbabilityOutcome pb=new SimpleProbabilityOutcome(titleB);
+		ProbabilityOutcome pc=new SimpleProbabilityOutcome("c");
+		ProbabilityOutcome pd=new SimpleProbabilityOutcome("d");
+		ProbabilityOutcome pe=new SimpleProbabilityOutcome(titleE);
+		ProbabilityOutcome pf=new SimpleProbabilityOutcome(titleF);
 		
 		ListSelection selectionAB = new ListSelection(1, pa,pb);
 		ListSelection selectionCD = new ListSelection(1, pc,pd,pe,pf);
 		ListSelection selectionF = new ListSelection(1, ProbabilityProcess.toProbabilities(selectionAB,selectionCD));
 		
-		List<Probability> result = selectionF.getProbabilityOutput();
+		List<ProbabilityOutcome> result = selectionF.getProbabilityOutput();
 		
-		double probabilities = Probability.sumAllProbabilities(result);
+		double probabilities = ProbabilityOutcome.sumAllProbabilities(result);
 		Assertions.assertThat(result).hasSize(6);
 		Assertions.assertThat(probabilities).isCloseTo(1.0, Offset.offset(0.000000001));
 		
-		Probability finalPa = Probability.getByTitle(result, titleA);
-		Probability finalPb = Probability.getByTitle(result, titleB);
-		Probability finalPe = Probability.getByTitle(result, titleE);
-		Probability finalPf = Probability.getByTitle(result, titleF);
+		ProbabilityOutcome finalPa = ProbabilityOutcome.getByTitle(result, titleA);
+		ProbabilityOutcome finalPb = ProbabilityOutcome.getByTitle(result, titleB);
+		ProbabilityOutcome finalPe = ProbabilityOutcome.getByTitle(result, titleE);
+		ProbabilityOutcome finalPf = ProbabilityOutcome.getByTitle(result, titleF);
 		Assertions.assertThat(finalPf.getProbability()).isEqualTo(finalPe.getProbability());
 		Assertions.assertThat(finalPa.getProbability()).isEqualTo(finalPb.getProbability());
 		Assert.assertTrue(finalPf.getProbability()<finalPa.getProbability());
 		printLine();
-		for (Probability probability : result) {
+		for (ProbabilityOutcome probability : result) {
 			System.out.println(probability);
 		}
 	}

@@ -1,7 +1,7 @@
 package de.neuenberger.serendipity.em;
 
-import de.neuenberger.serendipity.Probability;
-import de.neuenberger.serendipity.SimpleProbability;
+import de.neuenberger.serendipity.ProbabilityOutcome;
+import de.neuenberger.serendipity.SimpleProbabilityOutcome;
 
 /**
  * 
@@ -26,22 +26,22 @@ public class Team {
 	}
 	
 	public interface TeamProbabilityFactory {
-		Probability create(Team t);
+		ProbabilityOutcome create(Team t);
 	}
 	
 	static class TeamByNameProbabilityFactory implements TeamProbabilityFactory{
 
 		@Override
-		public Probability create(Team team) {
-			return new SimpleProbability("Team:\t"+team.getName());
+		public ProbabilityOutcome create(Team team) {
+			return new SimpleProbabilityOutcome("Team:\t"+team.getName());
 		}
 		
 	}
 	
 	static class TeamBySupplierProbabilityFactory implements TeamProbabilityFactory {
 		@Override
-		public Probability create(Team team) {
-			return new SimpleProbability("Supplier:\t"+team.getSupplier());
+		public ProbabilityOutcome create(Team team) {
+			return new SimpleProbabilityOutcome("Supplier:\t"+team.getSupplier());
 		}
 	}
 	

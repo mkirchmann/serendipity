@@ -9,23 +9,23 @@ import java.util.List;
  *
  */
 public interface ProbabilityProcess {
-	List<Probability> getProbabilityOutput();
+	List<ProbabilityOutcome> getProbabilityOutput();
 	
-	static Probability[] toProbabilities(ProbabilityProcess process) {
-		List<Probability> probabilityOutput = process.getProbabilityOutput();
+	static ProbabilityOutcome[] toProbabilities(ProbabilityProcess process) {
+		List<ProbabilityOutcome> probabilityOutput = process.getProbabilityOutput();
 		return toProbabilities(probabilityOutput);
 	}
 
-	static Probability[] toProbabilities(List<Probability> probabilityOutput) {
-		return probabilityOutput.toArray(new Probability[]{});
+	static ProbabilityOutcome[] toProbabilities(List<ProbabilityOutcome> probabilityOutput) {
+		return probabilityOutput.toArray(new ProbabilityOutcome[]{});
 	}
 	
-	static Probability[] toProbabilities(ProbabilityProcess... p) {
-		List<Probability> probabilityList = new ArrayList<>();
+	static ProbabilityOutcome[] toProbabilities(ProbabilityProcess... p) {
+		List<ProbabilityOutcome> probabilityList = new ArrayList<>();
 		for (ProbabilityProcess probabilityProcess : p) {
 			probabilityList.addAll(probabilityProcess.getProbabilityOutput());
 		}
-		Probability[] probabilityArray = toProbabilities(probabilityList);
+		ProbabilityOutcome[] probabilityArray = toProbabilities(probabilityList);
 		return probabilityArray;
 	}
 }

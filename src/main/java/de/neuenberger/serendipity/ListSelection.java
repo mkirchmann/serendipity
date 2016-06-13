@@ -7,70 +7,91 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * A process that selects a number of outcomes from all given outcomes.
  * 
  * @author Michael Kirchmann
  *
  */
 public class ListSelection implements ProbabilityProcess {
 	private final Integer selectionLimit;
-	
-	private final List<Probability> probabilityInput;
 
-	private List<Probability> outputs;
+	private final List<ProbabilityOutcome> probabilityInput;
+
+	private List<ProbabilityOutcome> outputs;
 
 	private final double sumAllProbabilities;
-	
-	public ListSelection(Integer selectionLimit, Probability ...inputs) {
+
+	/**
+	 * Constructs an instance of {@link ListSelection}
+	 * 
+	 * @param selectionLimit
+	 *            given selection Limit
+	 * @param inputs
+	 *            all inputs
+	 */
+	public ListSelection(Integer selectionLimit, ProbabilityOutcome... inputs) {
 		this.selectionLimit = selectionLimit;
 		Objects.requireNonNull(inputs);
-		if (inputs.length==0) {
+		if (inputs.length == 0) {
 			throw new IllegalArgumentException("Inputs may not be empty");
 		}
-		if (selectionLimit<0) {
+		if (selectionLimit < 0) {
 			throw new IllegalArgumentException("Negative numbers are not allowed for selection");
 		}
 		probabilityInput = new ArrayList<>(inputs.length);
 		probabilityInput.addAll(Arrays.asList(inputs));
-		sumAllProbabilities = Probability.sumAllProbabilities(probabilityInput);
-		if (sumAllProbabilities<=0) {
-			throw new IllegalArgumentException("Probability is out of range: "+sumAllProbabilities);
+		sumAllProbabilities = ProbabilityOutcome.sumAllProbabilities(probabilityInput);
+		if (sumAllProbabilities <= 0) {
+			throw new IllegalArgumentException("Probability is out of range: " + sumAllProbabilities);
 		}
 	}
 
 	@Override
-	public List<Probability> getProbabilityOutput() {
-		if (outputs==null) {
-			List<Probability> tempOutputs = new ArrayList<>(probabilityInput.size());
+	public List<ProbabilityOutcome> getProbabilityOutput() {
+		if (outputs == null) {
+			List<ProbabilityOutcome> tempOutputs = new ArrayList<>(probabilityInput.size());
 			double multiPlier = getOutputProbability();
-			for (Probability probabilityInput : probabilityInput) {
-				Probability multiply = probabilityInput.multiply(multiPlier);
+			for (ProbabilityOutcome probabilityInput : probabilityInput) {
+				ProbabilityOutcome multiply = probabilityInput.multiply(multiPlier);
 				double newProbability = multiply.getProbability();
-				if (newProbability!=0) {
-					addOrCombine(tempOutputs,multiply);
+				if (newProbability != 0) {
+					addOrCombine(tempOutputs, multiply);
 				}
 			}
-			this.outputs=Collections.unmodifiableList(tempOutputs);
+			this.outputs = Collections.unmodifiableList(tempOutputs);
 		}
 		return outputs;
 	}
 
+	/**
+	 * 
+	 * @return Returns a normalized probability
+	 */
 	protected double getOutputProbability() {
-		return (double)Math.min(selectionLimit, probabilityInput.size())/(double)sumAllProbabilities;
+		return (double) Math.min(selectionLimit, probabilityInput.size()) / (double) sumAllProbabilities;
 	}
 
-	private void addOrCombine(List<Probability> tempOutputs, Probability multiply) {
-		Probability probabilityToBeReplaced = null;
-		for (Probability probability : tempOutputs) {
-			if (probability.isCombinable(multiply)) {
+	/**
+	 * Checks whether an outcome exists in the given list out outputs and tries
+	 * it to combine, otherwise it is added. The order of tempOutputs may be changed.
+	 * 
+	 * @param tempOutputs
+	 *            given list out outputs
+	 * @param outcomeToAdd given output to be added.
+	 */
+	private void addOrCombine(List<ProbabilityOutcome> tempOutputs, ProbabilityOutcome outcomeToAdd) {
+		ProbabilityOutcome probabilityToBeReplaced = null;
+		for (ProbabilityOutcome probability : tempOutputs) {
+			if (probability.isCombinable(outcomeToAdd)) {
 				probabilityToBeReplaced = probability;
 				break;
 			}
 		}
-		if (probabilityToBeReplaced!=null) {
+		if (probabilityToBeReplaced != null) {
 			tempOutputs.remove(probabilityToBeReplaced);
-			tempOutputs.add(probabilityToBeReplaced.combineWith(multiply));
+			tempOutputs.add(probabilityToBeReplaced.combineWith(outcomeToAdd));
 		} else {
-			tempOutputs.add(multiply);
+			tempOutputs.add(outcomeToAdd);
 		}
 	}
 }
