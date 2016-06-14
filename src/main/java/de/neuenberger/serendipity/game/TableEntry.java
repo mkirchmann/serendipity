@@ -27,7 +27,7 @@ public class TableEntry implements Comparable<TableEntry> {
 
 	@Override
 	public int compareTo(TableEntry o) {
-		return points.compareTo(o.getPoints());
+		return -points.compareTo(o.getPoints());
 	}
 	
 	@Override

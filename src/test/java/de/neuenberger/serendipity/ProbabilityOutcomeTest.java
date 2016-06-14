@@ -48,4 +48,5 @@ public class ProbabilityOutcomeTest {
 		
 		ProbabilityOutcome byTitle = ProbabilityOutcome.getByTitle(list, title);
 	}
+
 }

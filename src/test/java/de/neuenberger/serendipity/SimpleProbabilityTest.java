@@ -1,5 +1,8 @@
 package de.neuenberger.serendipity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Offset;
 import org.junit.Test;
@@ -86,5 +89,22 @@ public class SimpleProbabilityTest {
 		boolean result = probability1.isCombinable(probability2);
 		
 		Assertions.assertThat(result).isFalse();
+	}
+
+	@Test
+	public void testGetFromMap() {
+		Map<SimpleProbabilityOutcome, Integer> map = new HashMap<>();
+
+		Integer expected = 45034;
+		SimpleProbabilityOutcome key = new SimpleProbabilityOutcome(null);
+		map.put(key, expected);
+		Integer result = map.get(key);
+
+		Assertions.assertThat(result).isSameAs(expected);
+	}
+
+	@Test
+	public void coverEquals() {
+		BaseTest.testEquals(new SimpleProbabilityOutcome(null));
 	}
 }

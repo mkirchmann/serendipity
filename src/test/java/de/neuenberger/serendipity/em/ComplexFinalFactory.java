@@ -1,9 +1,8 @@
 package de.neuenberger.serendipity.em;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,15 +12,19 @@ import de.neuenberger.serendipity.ProbabilityProcess;
 import de.neuenberger.serendipity.em.Team.TeamProbabilityFactory;
 import de.neuenberger.serendipity.game.Consequence;
 import de.neuenberger.serendipity.game.Match;
+import de.neuenberger.serendipity.game.MatchResult;
 import de.neuenberger.serendipity.game.ResultTable;
 
 public class ComplexFinalFactory extends SimpleFinalFactory {
+
+	Map<Gruppe, ResultTable> gruppeToResult;
+
+	private List<Match> knownResults;
 
 	public ComplexFinalFactory(TeamProbabilityFactory factory) {
 		super(factory);
 	}
 	
-	Map<Gruppe, ResultTable> gruppeToResult;
 	
 	@Override
 	public Gruppe createGroup(Team... teams) {
@@ -33,12 +36,53 @@ public class ComplexFinalFactory extends SimpleFinalFactory {
 		
 		Consequence[] consequences = Consequence.values();
 		List<Match> listOfMatches = Match.createPairings(listOutcome, consequences);
+
+		List<Match> listOfMatchesWithReplaced = new ArrayList<>(listOfMatches.size());
+		List<Match> copyOfKnownResults = new ArrayList<>(getKnownResults());
+		for (Match match2 : listOfMatches) {
+			Match replacement = null;
+			for (Match match : copyOfKnownResults) {
+				if (match2.equals(match)) {
+					replacement = match;
+					break;
+				}
+			}
+			if (replacement != null) {
+				copyOfKnownResults.remove(replacement);
+				listOfMatchesWithReplaced.add(replacement);
+				System.out.println(match2 + " replaced with " + replacement);
+			} else {
+				listOfMatchesWithReplaced.add(match2);
+			}
+		}
+
+
 		Gruppe group = super.createGroup(teams);
 		if (gruppeToResult==null) {
 			gruppeToResult = new HashMap<>();
 		}
 		gruppeToResult.put(group, new ResultTable(listOfMatches));
 		return group;
+	}
+
+	private List<Match> getKnownResults() {
+		if (knownResults == null) {
+			knownResults = Collections.unmodifiableList(createKnownResults());
+		}
+		return knownResults;
+	}
+
+	private List<Match> createKnownResults() {
+		List<Match> knownMatches = new ArrayList<>();
+
+		knownMatches.add(createMatch(team09, team10, Consequence.WIN1));
+
+		return knownMatches;
+	}
+
+	private Match createMatch(Team teamA, Team teamB, Consequence consequence) {
+		MatchResult result = new MatchResult(consequence);
+		return new Match(getFactory().create(teamA), getFactory().create(teamB), result);
 	}
 
 	@Override

@@ -65,4 +65,20 @@ public class ResultTableTest {
 		ResultTable resultTable = new ResultTable(pairings);
 		return resultTable;
 	}
+
+	@Test
+	public void testResultsWithFixedResult() {
+		List<ProbabilityOutcome> listOutcome = Arrays.asList(t1, t2, t3, t4);
+		List<Match> pairings = Match.createPairings(listOutcome, Consequence.values());
+		Match match = new Match(t1, t2, new MatchResult(Consequence.WIN1));
+		pairings.remove(match);
+		pairings.add(match);
+		ResultTable resultTable = new ResultTable(pairings);
+
+		System.out.println("--------------");
+		List<ProbabilityOutcome> list = resultTable.selectPosition(0);
+		for (ProbabilityOutcome probabilityOutcome : list) {
+			System.out.println(probabilityOutcome);
+		}
+	}
 }

@@ -15,6 +15,31 @@ public class SimpleFinalFactory {
 	private final Gruppe gruppeF;
 	private final TeamProbabilityFactory factory;
 	
+	protected final Team team01 = new Team("Frankreich", "Nike");
+	protected final Team team02 = new Team("Schweiz", "Puma");
+	protected final Team team03 = new Team("Rumänien", "Joma");
+	protected final Team team04 = new Team("Albanien", "Macron");
+	protected final Team team06 = new Team("Wales", "Adidas");
+	protected final Team team07 = new Team("England", "Nike");
+	protected final Team team08 = new Team("Slowakei", "Puma");
+	protected final Team team09 = new Team("Deutschland", "Adidas");
+	protected final Team team10 = new Team("Ukraine", "Adidas");
+	protected final Team team11 = new Team("Nordirland", "Adidas");
+	protected final Team team12 = new Team("Polen", "Nike");
+	protected final Team team13 = new Team("Spanien", "Adidas");
+	protected final Team team14 = new Team("Kroatien", "Nike");
+	protected final Team team15 = new Team("Türkey", "Nike");
+	protected final Team team16 = new Team("Tschechien", "Puma");
+	protected final Team team17 = new Team("Belgien", "Adidas");
+	protected final Team team18 = new Team("Schweden", "Adidas");
+	protected final Team team19 = new Team("Italien", "Puma");
+	protected final Team team20 = new Team("Irland", "Umbro");
+	protected final Team team21 = new Team("Ungarn", "Adidas");
+	protected final Team team22 = new Team("Portugal", "Nike");
+	protected final Team team23 = new Team("Österreich", "Puma");
+	protected final Team team24 = new Team("Island", "Erreà");
+	protected final Team team05 = new Team("Russland", "Adidas");
+
 	public SimpleFinalFactory(TeamProbabilityFactory factory) {
 		this.factory = factory;
 		gruppeA = createGruppeA();
@@ -26,55 +51,31 @@ public class SimpleFinalFactory {
 	}
 
 	private Gruppe createGruppeF() {
-		Team team21 = new Team("Ungarn", "Adidas");
-		Team team22 = new Team("Portugal", "Nike");
-		Team team23 = new Team("Österreich", "Puma");
-		Team team24 = new Team("Island", "Erreà");
 		Gruppe gruppe = createGroup(team21,team22,team23,team24);
 		return gruppe;
 	}
 
 	private Gruppe createGruppeE() {
-		Team team17 = new Team("Belgien", "Adidas");
-		Team team18 = new Team("Schweden", "Adidas");
-		Team team19 = new Team("Italien", "Puma");
-		Team team20 = new Team("Irland", "Umbro");
 		Gruppe gruppe = createGroup(team17,team18,team19,team20);
 		return gruppe;
 	}
 
 	private Gruppe createGruppeD() {
-		Team team13 = new Team("Spanien", "Adidas");
-		Team team14 = new Team("Kroatien", "Nike");
-		Team team15 = new Team("Türkey", "Nike");
-		Team team16 = new Team("Tschechien", "Puma");
 		Gruppe gruppe = createGroup(team13,team14,team15,team16);
 		return gruppe;
 	}
 
 	private Gruppe createGruppeC() {
-		Team team09 = new Team("Deutschland", "Adidas");
-		Team team10 = new Team("Ukraine", "Adidas");
-		Team team11 = new Team("Nordirland", "Adidas");
-		Team team12 = new Team("Polen", "Nike");
 		 Gruppe gruppe = createGroup(team09, team10, team11, team12);
 		return gruppe;
 	}
 
 	private Gruppe createGruppeB() {
-		Team team05 = new Team("Russland", "Adidas");
-		Team team06 = new Team("Wales", "Adidas");
-		Team team07 = new Team("England", "Nike");
-		Team team08 = new Team("Slowakei", "Puma");
 		Gruppe gruppe =  createGroup(team05,team06,team07,team08);
 		return gruppe;
 	}
 
 	private Gruppe createGruppeA() {
-		Team team01 = new Team("Frankreich", "Nike");
-		Team team02 = new Team("Schweiz", "Puma");
-		Team team03 = new Team("Rumänien", "Joma");
-		Team team04 = new Team("Albanien", "Macron");
 		Gruppe gruppe = createGroup(team01,team02,team03,team04);
 		return gruppe;
 	}
