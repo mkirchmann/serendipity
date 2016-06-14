@@ -25,7 +25,7 @@ public class ProbabilityOutcomeTest {
 		
 	}
 	
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testGetByTitle_notFoundCase() {
 		String title = "someTitle";
 		
