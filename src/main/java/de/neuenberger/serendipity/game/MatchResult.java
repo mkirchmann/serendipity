@@ -27,4 +27,9 @@ public class MatchResult {
 		return consequence;
 	}
 
+	@Override
+	public String toString() {
+		return match + " " + consequence;
+	}
+
 }

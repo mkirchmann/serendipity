@@ -30,4 +30,9 @@ public class TableEntry implements Comparable<TableEntry> {
 		return points.compareTo(o.getPoints());
 	}
 	
+	@Override
+	public String toString() {
+		return team + " " + points;
+	}
+
 }

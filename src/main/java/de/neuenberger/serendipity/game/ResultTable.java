@@ -38,9 +38,23 @@ public class ResultTable {
 				list.add(new TableEntry(entry.getKey(), entry.getValue()));
 			}
 			Collections.sort(list);
+			TableEntry oldEntry = null;
+			int oldIdx = 0;
 			for (int i=0; i<list.size(); i++) {
 				TableEntry entry = list.get(i);
-				map.put(i, entry.getTeam());
+				int toIdx;
+				if (oldEntry != null) {
+					if (oldEntry.getPoints().equals(entry.getPoints())) {
+						toIdx = oldIdx;
+					} else {
+						toIdx = i;
+					}
+				} else {
+					toIdx = i;
+				}
+				map.put(toIdx, entry.getTeam());
+				oldEntry = entry;
+				oldIdx = toIdx;
 			}
 		}
 	}
