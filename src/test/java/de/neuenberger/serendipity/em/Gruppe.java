@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import de.neuenberger.serendipity.ListSelection;
 import de.neuenberger.serendipity.ProbabilityOutcome;
 import de.neuenberger.serendipity.ProbabilityProcess;
-import de.neuenberger.serendipity.SimpleProbabilityOutcome;
 import de.neuenberger.serendipity.em.Team.TeamProbabilityFactory;
 
 public class Gruppe {

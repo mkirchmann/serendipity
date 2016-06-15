@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Offset;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
 public class ListSelectionTest {
 	@Test

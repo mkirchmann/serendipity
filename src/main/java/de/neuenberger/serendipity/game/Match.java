@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.neuenberger.serendipity.ProbabilityOutcome;
-import de.neuenberger.serendipity.em.Team;
 
 /**
  * Models a match of two teams.
