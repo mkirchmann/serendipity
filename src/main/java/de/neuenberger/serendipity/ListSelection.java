@@ -58,6 +58,7 @@ public class ListSelection implements ProbabilityProcess {
 					addOrCombine(tempOutputs, multiply);
 				}
 			}
+			Collections.sort(tempOutputs);
 			this.outputs = Collections.unmodifiableList(tempOutputs);
 		}
 		return outputs;

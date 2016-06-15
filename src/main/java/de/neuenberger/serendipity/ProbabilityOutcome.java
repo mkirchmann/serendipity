@@ -8,7 +8,12 @@ import java.util.List;
  * @author Michael Kirchmann
  *
  */
-public interface ProbabilityOutcome {
+public interface ProbabilityOutcome extends Comparable<ProbabilityOutcome>{
+	/**
+	 * The probability of this outcome
+	 * 
+	 * @return Returns the probability
+	 */
 	double getProbability();
 
 	/**

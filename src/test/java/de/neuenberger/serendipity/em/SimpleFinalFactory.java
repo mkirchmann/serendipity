@@ -15,30 +15,30 @@ public class SimpleFinalFactory {
 	private final Gruppe gruppeF;
 	private final TeamProbabilityFactory factory;
 	
-	protected final Team team01 = new Team("Frankreich", "Nike");
-	protected final Team team02 = new Team("Schweiz", "Puma");
-	protected final Team team03 = new Team("Rumänien", "Joma");
-	protected final Team team04 = new Team("Albanien", "Macron");
-	protected final Team team06 = new Team("Wales", "Adidas");
-	protected final Team team07 = new Team("England", "Nike");
-	protected final Team team08 = new Team("Slowakei", "Puma");
-	protected final Team team09 = new Team("Deutschland", "Adidas");
-	protected final Team team10 = new Team("Ukraine", "Adidas");
-	protected final Team team11 = new Team("Nordirland", "Adidas");
-	protected final Team team12 = new Team("Polen", "Nike");
-	protected final Team team13 = new Team("Spanien", "Adidas");
-	protected final Team team14 = new Team("Kroatien", "Nike");
-	protected final Team team15 = new Team("Türkey", "Nike");
-	protected final Team team16 = new Team("Tschechien", "Puma");
-	protected final Team team17 = new Team("Belgien", "Adidas");
-	protected final Team team18 = new Team("Schweden", "Adidas");
-	protected final Team team19 = new Team("Italien", "Puma");
-	protected final Team team20 = new Team("Irland", "Umbro");
-	protected final Team team21 = new Team("Ungarn", "Adidas");
-	protected final Team team22 = new Team("Portugal", "Nike");
-	protected final Team team23 = new Team("Österreich", "Puma");
-	protected final Team team24 = new Team("Island", "Erreà");
-	protected final Team team05 = new Team("Russland", "Adidas");
+	protected final Team team01France = new Team("Frankreich", "Nike");
+	protected final Team team02Switzerland = new Team("Schweiz", "Puma");
+	protected final Team team03Romania = new Team("Rumänien", "Joma");
+	protected final Team team04Albania = new Team("Albanien", "Macron");
+	protected final Team team05Russia = new Team("Russland", "Adidas");
+	protected final Team team06Wales = new Team("Wales", "Adidas");
+	protected final Team team07England = new Team("England", "Nike");
+	protected final Team team08Slovakia = new Team("Slowakei", "Puma");
+	protected final Team team09Germany = new Team("Deutschland", "Adidas");
+	protected final Team team10Ukraine = new Team("Ukraine", "Adidas");
+	protected final Team team11NorthernIreland = new Team("Nordirland", "Adidas");
+	protected final Team team12Poland = new Team("Polen", "Nike");
+	protected final Team team13Spain = new Team("Spanien", "Adidas");
+	protected final Team team14Croatia = new Team("Kroatien", "Nike");
+	protected final Team team15Turkey = new Team("Türkey", "Nike");
+	protected final Team team16CzechRepublic = new Team("Tschechien", "Puma");
+	protected final Team team17Belgium = new Team("Belgien", "Adidas");
+	protected final Team team18Sweden = new Team("Schweden", "Adidas");
+	protected final Team team19Italy = new Team("Italien", "Puma");
+	protected final Team team20Ireland = new Team("Irland", "Umbro");
+	protected final Team team21Hungary = new Team("Ungarn", "Adidas");
+	protected final Team team22Portugal = new Team("Portugal", "Nike");
+	protected final Team team23Austria = new Team("Österreich", "Puma");
+	protected final Team team24Iceland = new Team("Island", "Erreà");
 
 	public SimpleFinalFactory(TeamProbabilityFactory factory) {
 		this.factory = factory;
@@ -50,33 +50,33 @@ public class SimpleFinalFactory {
 		gruppeF = createGruppeF();
 	}
 
-	private Gruppe createGruppeF() {
-		Gruppe gruppe = createGroup(team21,team22,team23,team24);
+	protected Gruppe createGruppeF() {
+		Gruppe gruppe = createGroup(team21Hungary,team22Portugal,team23Austria,team24Iceland);
 		return gruppe;
 	}
 
-	private Gruppe createGruppeE() {
-		Gruppe gruppe = createGroup(team17,team18,team19,team20);
+	protected Gruppe createGruppeE() {
+		Gruppe gruppe = createGroup(team17Belgium,team18Sweden,team19Italy,team20Ireland);
 		return gruppe;
 	}
 
-	private Gruppe createGruppeD() {
-		Gruppe gruppe = createGroup(team13,team14,team15,team16);
+	protected Gruppe createGruppeD() {
+		Gruppe gruppe = createGroup(team13Spain,team14Croatia,team15Turkey,team16CzechRepublic);
 		return gruppe;
 	}
 
-	private Gruppe createGruppeC() {
-		 Gruppe gruppe = createGroup(team09, team10, team11, team12);
+	protected Gruppe createGruppeC() {
+		 Gruppe gruppe = createGroup(team09Germany, team10Ukraine, team11NorthernIreland, team12Poland);
 		return gruppe;
 	}
 
-	private Gruppe createGruppeB() {
-		Gruppe gruppe =  createGroup(team05,team06,team07,team08);
+	protected Gruppe createGruppeB() {
+		Gruppe gruppe =  createGroup(team05Russia,team06Wales,team07England,team08Slovakia);
 		return gruppe;
 	}
 
-	private Gruppe createGruppeA() {
-		Gruppe gruppe = createGroup(team01,team02,team03,team04);
+	protected Gruppe createGruppeA() {
+		Gruppe gruppe = createGroup(team01France,team02Switzerland,team03Romania,team04Albania);
 		return gruppe;
 	}
 	

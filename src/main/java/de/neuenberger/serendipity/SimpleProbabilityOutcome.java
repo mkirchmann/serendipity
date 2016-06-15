@@ -102,4 +102,18 @@ public class SimpleProbabilityOutcome implements ProbabilityOutcome {
 		return true;
 	}
 
+	@Override
+	public int compareTo(ProbabilityOutcome o) {
+		double otherProbability = o.getProbability();
+		int result;
+		if (probability<otherProbability) {
+			result = 1;
+		} else if (probability>otherProbability) {
+			result = -1;
+		} else {
+			result = 0;
+		}
+		return result;
+	}
+
 }
