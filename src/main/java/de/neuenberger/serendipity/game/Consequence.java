@@ -1,5 +1,10 @@
 package de.neuenberger.serendipity.game;
 
+/**
+ * Models the points awarded to both teams for a certain result.
+ * @author Michael Kirchmann
+ *
+ */
 public enum Consequence {
 	WIN1(3,0),DRAW(1,1),WIN2(0,3);
 	

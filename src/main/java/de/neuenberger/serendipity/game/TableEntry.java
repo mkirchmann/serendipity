@@ -4,6 +4,12 @@ import java.util.Objects;
 
 import de.neuenberger.serendipity.ProbabilityOutcome;
 
+/**
+ * An entry for a table for having a probability and points which are useful for matches.
+ * 
+ * @author Michael Kirchmann
+ *
+ */
 public class TableEntry implements Comparable<TableEntry> {
 	private final ProbabilityOutcome team;
 	private final Integer points;

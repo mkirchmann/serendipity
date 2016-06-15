@@ -9,7 +9,7 @@ import java.util.List;
 import de.neuenberger.serendipity.ProbabilityOutcome;
 
 /**
- * Models a match.
+ * Models a match of two teams.
  * 
  * @author Michael Kirchmann
  *

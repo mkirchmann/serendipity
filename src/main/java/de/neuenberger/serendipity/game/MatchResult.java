@@ -1,5 +1,11 @@
 package de.neuenberger.serendipity.game;
 
+/**
+ * Keeps a Result of a match.
+ * 
+ * @author Michael Kirchmann
+ *
+ */
 public class MatchResult {
 
 	private final Consequence consequence;
